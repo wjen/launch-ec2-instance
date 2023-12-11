@@ -3,14 +3,14 @@
 # fail on any error
 set -eu
 
-# go back to the previous directory
-cd .. 
+# install yum-config-manager to manage your repositories
+sudo yum install -y yum-utils
 
-# initialize terraform
-terraform init
+# use yum-config-manager to add the official HashiCorp Linux repository
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
 
-# # apply terraform
-terraform apply -auto-approve
+# install terraform
+sudo yum -y install terraform
 
-# destroy terraform
-# terraform destroy -auto-approve
+# verify terraform is installed
+terraform --version
